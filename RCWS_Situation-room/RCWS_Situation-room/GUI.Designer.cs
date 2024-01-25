@@ -73,7 +73,7 @@
             this.enemyMovementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enemyConcentrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox_ImageTest = new System.Windows.Forms.PictureBox();
-            this.btn_udp = new System.Windows.Forms.Button();
+            this.btn_setting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Map)).BeginInit();
             this.pn_mapcontainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_azimuth)).BeginInit();
@@ -496,21 +496,21 @@
             this.pictureBox_ImageTest.TabIndex = 19;
             this.pictureBox_ImageTest.TabStop = false;
             // 
-            // btn_udp
+            // btn_setting
             // 
-            this.btn_udp.Location = new System.Drawing.Point(211, 16);
-            this.btn_udp.Name = "btn_udp";
-            this.btn_udp.Size = new System.Drawing.Size(75, 23);
-            this.btn_udp.TabIndex = 20;
-            this.btn_udp.Text = "button1";
-            this.btn_udp.UseVisualStyleBackColor = true;
-            this.btn_udp.Click += new System.EventHandler(this.btn_udp_Click);
+            this.btn_setting.Location = new System.Drawing.Point(211, 16);
+            this.btn_setting.Name = "btn_setting";
+            this.btn_setting.Size = new System.Drawing.Size(75, 23);
+            this.btn_setting.TabIndex = 20;
+            this.btn_setting.Text = "Setting";
+            this.btn_setting.UseVisualStyleBackColor = true;
+            this.btn_setting.Click += new System.EventHandler(this.btn_udp_Click);
             // 
             // GUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1558, 782);
-            this.Controls.Add(this.btn_udp);
+            this.ClientSize = new System.Drawing.Size(2132, 782);
+            this.Controls.Add(this.btn_setting);
             this.Controls.Add(this.pictureBox_ImageTest);
             this.Controls.Add(this.btn_disconnect);
             this.Controls.Add(this.groupBox5);
@@ -602,6 +602,6 @@
         private System.Windows.Forms.Button btn_fire;
         private System.Windows.Forms.Button btn_takeaim;
         private System.Windows.Forms.PictureBox pictureBox_ImageTest;
-        private System.Windows.Forms.Button btn_udp;
+        private System.Windows.Forms.Button btn_setting;
     }
 }

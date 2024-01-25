@@ -77,7 +77,7 @@ namespace RCWS_Situation_room
 
         private void tb_password_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter && tb_username.Text=="아빠안잔다" && tb_password.Text == "hanium")
+            if(e.KeyCode == Keys.Enter && tb_username.Text=="까불면 메카 약이다" && tb_password.Text == "mecha")
             {
                 MessageBox.Show("Successfully Login");
                 this.Visible = false;

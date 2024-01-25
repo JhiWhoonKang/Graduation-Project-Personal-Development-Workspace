@@ -24,3 +24,14 @@ C:\JHIWHOON_ws\github_ws\RCWS-GUI\RCWS_Situation-room\RCWS_Situation-room\obj\De
 C:\JHIWHOON_ws\github_ws\RCWS-GUI\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.csproj.CoreCompileInputs.cache
 C:\JHIWHOON_ws\github_ws\RCWS-GUI\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.exe
 C:\JHIWHOON_ws\github_ws\RCWS-GUI\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.pdb
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\RCWS_Situation-room.exe.config
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\RCWS_Situation-room.exe
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\RCWS_Situation-room.pdb
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.csproj.AssemblyReference.cache
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation_room.Form1.resources
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation_room.GUI.resources
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation_room.Properties.Resources.resources
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.csproj.GenerateResource.cache
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.csproj.CoreCompileInputs.cache
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.exe
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.pdb
