@@ -59,11 +59,6 @@ namespace RCWS_Situation_room
             //else
             //    MessageBox.Show("Invalid User Name or Password");
 
-            RCWSCam = new Process();
-            //RCWSCam.StartInfo.FileName = "C:\\JHIWHOON\\RCWS_project\\x64\\Release\\Test_MainServer.exe"; //notebook
-            RCWSCam.StartInfo.FileName = "C:\\JHIWHOON_ws\\2023 Hanium\\My_Server\\obj\\Debug\\My_Server.exe"; //desktop
-            RCWSCam.Start();
-
             this.Visible = false;
             GUI gui = new GUI(streamWriter);
             gui.Show();
