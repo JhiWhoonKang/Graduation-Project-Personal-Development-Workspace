@@ -232,7 +232,7 @@ namespace RCWS_Situation_room
             /* */
 
             /* optical data */
-            if (pressedKeys.Contains(Keys.Z) && pressedKeys.Contains(Keys.I)) //배율 확대 C# GUI -> Arduino
+            if (pressedKeys.Contains(Keys.Z) && pressedKeys.Contains(Keys.I))
             {
                 try
                 {
@@ -244,7 +244,7 @@ namespace RCWS_Situation_room
                 }
             }
 
-            if (pressedKeys.Contains(Keys.Z) && pressedKeys.Contains(Keys.O)) //배율 축소 C# GUI -> Arduino
+            if (pressedKeys.Contains(Keys.Z) && pressedKeys.Contains(Keys.O))
             {
                 try
                 {
