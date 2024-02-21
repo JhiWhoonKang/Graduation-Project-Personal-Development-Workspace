@@ -1,13 +1,21 @@
+// ******************************************************************************
+// Speed range 0 ~ 3000
+// Acc 0 ~ 255
+// relAxis range -8388607 ~ 8388607
+// Dir 0(CCW), 1(CW)
+// CRC = (ID + byte1 + … + byte(n) ) & 0xFF
+// ******************************************************************************
 #include <FlexCAN_T4.h>
 
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> Can0;
 CANListener listener;
 
 static CAN_message_t rxmsg, txmsg;
-boolean speedFlag;
-int speedIndex, accIndex, dirIndex; //index
+boolean speedFlag, positionFlag;
+int speedIndex, accIndex, dirIndex, relAxisIndex; //index
 int speed;
-int upperspeedByte, lowerspeedByte, accByte, dirByte; //speed
+int upperspeedByte, lowerspeedByte, accByte, dirByte, relAxisByte1, relAxisByte2, relAxisByte3; //speed
+long relAxisByte;
 
 void setup() 
 {
@@ -16,6 +24,8 @@ void setup()
   Serial.println("CAN Setup Start");
 
   speedFlag = false;
+  positionFlag = false;
+
   Can0.begin();
   Can0.setBaudRate(500000);
   Can0.attachObj(&listener);
@@ -46,7 +56,7 @@ void loop()
 
     Serial.println("---------------------------tx");
 
-    if(input == "speedmode status")
+    if(input == "speed mode status")
     {
       Serial.println("==========Speed Mode Configuration==========");
       speedFlag = true;
@@ -59,13 +69,103 @@ void loop()
       txmsg.buf[2] = lowerspeedByte;
       txmsg.buf[3] = accByte;
       txmsg.buf[4] = (txmsg.id + txmsg.buf[0] + txmsg.buf[1] + txmsg.buf[2] + txmsg.buf[3]) & 0xFF;
+
+      Serial.printf("CAN DATA FORMAT: ");
       Serial.printf("%02X %02X %02X %02X %02X %02X", txmsg.id, txmsg.buf[0],  txmsg.buf[1], txmsg.buf[2], txmsg.buf[3], txmsg.buf[4]);
       Serial.println("\n============================================");
     }
 
-    if(input == "run speedMode")
+    if(input == "run speed mode")
     {
+      Serial.println("~~~~~~~~~~Run Speed Mode~~~~~~~~~~");
+      Can0.write(txmsg);
+      Serial.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
 
+    if(input == "stop speed mode")
+    {
+      Serial.println("**********Stop Speed Mode**********");
+      txmsg.buf[0] = 0xF6;
+      txmsg.buf[1] = 0x00;
+      txmsg.buf[2] = 0x00;
+      txmsg.buf[3] = accByte;
+      txmsg.buf[4] = (txmsg.id + txmsg.buf[0] + txmsg.buf[3]) & 0xFF;
+
+      Serial.printf("CAN DATA FORMAT: ");
+      Serial.printf("%02X %02X %02X %02X %02X %02X", txmsg.id, txmsg.buf[0],  txmsg.buf[1], txmsg.buf[2], txmsg.buf[3], txmsg.buf[4]);
+
+      Can0.write(txmsg);
+      Serial.println("\n***********************************");
+    }
+
+    if(input == "position mode status")
+    {
+      Serial.println("==========Position Mode Configuration==========");
+      positionFlag = true;
+      Serial.println("FLAG SET");
+
+      txmsg.len = 8;
+      Serial.println("CAN DLC SET");
+      txmsg.buf[0] = 0xF4;
+      txmsg.buf[1] = upperspeedByte;
+      txmsg.buf[2] = lowerspeedByte;
+      txmsg.buf[3] = accByte;
+      txmsg.buf[4] = relAxisByte1;
+      txmsg.buf[5] = relAxisByte2;
+      txmsg.buf[6] = relAxisByte3;
+      txmsg.buf[7] = (txmsg.id + txmsg.buf[0] + txmsg.buf[1] + txmsg.buf[2] + txmsg.buf[3] + txmsg.buf[4] + txmsg.buf[5] + txmsg.buf[6]) & 0xFF;
+
+      Serial.printf("CAN DATA FORMAT: ");
+      Serial.printf("%02X %02X %02X %02X %02X %02X %02X %02X %02X", txmsg.id, txmsg.buf[0],  txmsg.buf[1], txmsg.buf[2], txmsg.buf[3], txmsg.buf[4], txmsg.buf[5], txmsg.buf[6], txmsg.buf[7]);
+      Serial.println("\n============================================");
+    }
+
+    if(input == "run position mode")
+    {
+      Serial.println("~~~~~~~~~~Run Position Mode~~~~~~~~~~");
+      Can0.write(txmsg);
+      Serial.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+
+    if(input == "stop position mode")
+    {
+      Serial.println("**********Stop Position Mode**********");
+      txmsg.buf[0] = 0xF4;
+      txmsg.buf[1] = 0;
+      txmsg.buf[2] = 0;
+      txmsg.buf[3] = accByte;
+      txmsg.buf[4] = 0;
+      txmsg.buf[5] = 0;
+      txmsg.buf[6] = 0;
+      txmsg.buf[7] = (txmsg.id + txmsg.buf[0] + txmsg.buf[3]) & 0xFF;
+
+      Serial.printf("CAN DATA FORMAT: ");
+      Serial.printf("%02X %02X %02X %02X %02X %02X %02X %02X %02X", txmsg.id, txmsg.buf[0],  txmsg.buf[1], txmsg.buf[2], txmsg.buf[3], txmsg.buf[4], txmsg.buf[5], txmsg.buf[6], txmsg.buf[7]);
+
+      Can0.write(txmsg);
+      Serial.println("\n**************************************");
+    }
+
+    if(input == "go home")
+    {
+      Serial.println("---------------------------go home");
+      txmsg.len = 2;
+      txmsg.buf[0] = 0x91;
+      txmsg.buf[1] = (txmsg.id + txmsg.buf[0]) & 0xFF;
+      
+      Can0.write(txmsg);
+      Serial.println("---------------------------go home_");
+    }
+
+    if(input == "set current axis to zero")
+    {
+      Serial.println("---------------------------set current axis to zero");
+      txmsg.len = 2;
+      txmsg.buf[0] = 0x92;
+      txmsg.buf[1] = (txmsg.id + txmsg.buf[0]) & 0xFF;
+      
+      Can0.write(txmsg);
+      Serial.println("---------------------------set current axis to zero_");
     }
 
     if(input.indexOf("canID") != -1)\
@@ -83,12 +183,13 @@ void loop()
       Serial.println("---------------------------Speed setup");
       speedIndex = input.indexOf("Speed");
       String speedStr = input.substring(speedIndex + 6).trim();
-      speed = strtol(speedStr.c_str(), NULL, 10);
-      upperspeedByte = (speed >> 8) & 0xFF;
-      lowerspeedByte = speed & 0xFF;
+      speed = strtol(speedStr.c_str(), NULL, 10);      
 
       if(speed >= 0 && speed <= 3000)
       {
+        upperspeedByte = (speed >> 8) & 0xFF;
+        lowerspeedByte = speed & 0xFF;
+
         Serial.printf("Speed in hexadecimal: %02X, %02X\n", upperspeedByte, lowerspeedByte);
       }
       else
@@ -139,6 +240,28 @@ void loop()
         Serial.println("Error: Dir value must be  0(CCW) or 1(CW)");
       }
       Serial.println("---------------------------Dir_");
+    }
+
+    if(input.indexOf("relAxis") != -1)
+    {
+      Serial.println("---------------------------relAxis setup");
+      relAxisIndex = input.indexOf("relAxis");
+      String relAxisStr = input.substring(accIndex + 8).trim();
+      relAxisByte = strtol(relAxisStr.c_str(), NULL, 10);
+
+      if (relAxisByte >= -8388607 && relAxisByte <= 8388607)
+      {
+        relAxisByte1 = (relAxisByte >> 16) & 0xFF;
+        relAxisByte2 = (relAxisByte >> 8) & 0xFF;
+        relAxisByte3 = relAxisByte & 0xFF;
+
+        Serial.printf("RelAxis in hexadecimal: %02X %02X %02X\n", relAxisByte1, relAxisByte2, relAxisByte3);
+      } 
+      else 
+      {
+        Serial.println("Error: relAxis value must be between -8388607 and +8388607");
+      }
+      Serial.println("---------------------------relAxis_");
     }
 
     if(speedFlag == true)
