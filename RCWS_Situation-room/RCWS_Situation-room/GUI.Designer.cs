@@ -35,7 +35,7 @@
             this.pn_mapcontainer = new System.Windows.Forms.Panel();
             this.rtb_sendtcp = new System.Windows.Forms.RichTextBox();
             this.rtb_receivetcp = new System.Windows.Forms.RichTextBox();
-            this.btn_connect = new System.Windows.Forms.Button();
+            this.btn_RCWS_connect = new System.Windows.Forms.Button();
             this.pictureBox_azimuth = new System.Windows.Forms.PictureBox();
             this.tb_body_azimuth = new System.Windows.Forms.TextBox();
             this.tb_body_elevation = new System.Windows.Forms.TextBox();
@@ -72,10 +72,8 @@
             this.suspectedEnemyActivityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enemyMovementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enemyConcentrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox_ImageTest = new System.Windows.Forms.PictureBox();
-            this.btn_setting = new System.Windows.Forms.Button();
+            this.btn_Camera_connect = new System.Windows.Forms.Button();
             this.pbI_Video = new OpenCvSharp.UserInterface.PictureBoxIpl();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lb_x = new System.Windows.Forms.Label();
             this.lb_y = new System.Windows.Forms.Label();
             this.lb_xx = new System.Windows.Forms.Label();
@@ -91,7 +89,6 @@
             this.groupBox8.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ImageTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbI_Video)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,15 +139,15 @@
             this.rtb_receivetcp.TabIndex = 4;
             this.rtb_receivetcp.Text = "";
             // 
-            // btn_connect
+            // btn_RCWS_connect
             // 
-            this.btn_connect.Location = new System.Drawing.Point(13, 13);
-            this.btn_connect.Name = "btn_connect";
-            this.btn_connect.Size = new System.Drawing.Size(92, 29);
-            this.btn_connect.TabIndex = 5;
-            this.btn_connect.Text = "Connect";
-            this.btn_connect.UseVisualStyleBackColor = true;
-            this.btn_connect.Click += new System.EventHandler(this.btn_connect_Click);
+            this.btn_RCWS_connect.Location = new System.Drawing.Point(13, 13);
+            this.btn_RCWS_connect.Name = "btn_RCWS_connect";
+            this.btn_RCWS_connect.Size = new System.Drawing.Size(92, 46);
+            this.btn_RCWS_connect.TabIndex = 5;
+            this.btn_RCWS_connect.Text = "RCWS Connect";
+            this.btn_RCWS_connect.UseVisualStyleBackColor = true;
+            this.btn_RCWS_connect.Click += new System.EventHandler(this.btn_RCWS_Connect_Click);
             // 
             // pictureBox_azimuth
             // 
@@ -457,9 +454,9 @@
             // 
             // btn_disconnect
             // 
-            this.btn_disconnect.Location = new System.Drawing.Point(111, 13);
+            this.btn_disconnect.Location = new System.Drawing.Point(209, 13);
             this.btn_disconnect.Name = "btn_disconnect";
-            this.btn_disconnect.Size = new System.Drawing.Size(92, 29);
+            this.btn_disconnect.Size = new System.Drawing.Size(92, 46);
             this.btn_disconnect.TabIndex = 18;
             this.btn_disconnect.Text = "Disconnect";
             this.btn_disconnect.UseVisualStyleBackColor = true;
@@ -495,23 +492,15 @@
             this.enemyConcentrationToolStripMenuItem.Text = "Enemy Concentration";
             this.enemyConcentrationToolStripMenuItem.Click += new System.EventHandler(this.enemyConcentrationToolStripMenuItem_Click);
             // 
-            // pictureBox_ImageTest
+            // btn_Camera_connect
             // 
-            this.pictureBox_ImageTest.Location = new System.Drawing.Point(422, 13);
-            this.pictureBox_ImageTest.Name = "pictureBox_ImageTest";
-            this.pictureBox_ImageTest.Size = new System.Drawing.Size(1077, 67);
-            this.pictureBox_ImageTest.TabIndex = 19;
-            this.pictureBox_ImageTest.TabStop = false;
-            // 
-            // btn_setting
-            // 
-            this.btn_setting.Location = new System.Drawing.Point(211, 16);
-            this.btn_setting.Name = "btn_setting";
-            this.btn_setting.Size = new System.Drawing.Size(75, 23);
-            this.btn_setting.TabIndex = 20;
-            this.btn_setting.Text = "Setting";
-            this.btn_setting.UseVisualStyleBackColor = true;
-            this.btn_setting.Click += new System.EventHandler(this.btn_udp_Click);
+            this.btn_Camera_connect.Location = new System.Drawing.Point(111, 13);
+            this.btn_Camera_connect.Name = "btn_Camera_connect";
+            this.btn_Camera_connect.Size = new System.Drawing.Size(92, 46);
+            this.btn_Camera_connect.TabIndex = 20;
+            this.btn_Camera_connect.Text = "Camera Connect";
+            this.btn_Camera_connect.UseVisualStyleBackColor = true;
+            this.btn_Camera_connect.Click += new System.EventHandler(this.btn_Camera_Connect_Click);
             // 
             // pbI_Video
             // 
@@ -520,11 +509,6 @@
             this.pbI_Video.Size = new System.Drawing.Size(529, 603);
             this.pbI_Video.TabIndex = 21;
             this.pbI_Video.TabStop = false;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // lb_x
             // 
@@ -569,14 +553,13 @@
             this.Controls.Add(this.lb_y);
             this.Controls.Add(this.lb_x);
             this.Controls.Add(this.pbI_Video);
-            this.Controls.Add(this.btn_setting);
-            this.Controls.Add(this.pictureBox_ImageTest);
+            this.Controls.Add(this.btn_Camera_connect);
             this.Controls.Add(this.btn_disconnect);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pictureBox_azimuth);
-            this.Controls.Add(this.btn_connect);
+            this.Controls.Add(this.btn_RCWS_connect);
             this.Controls.Add(this.rtb_receivetcp);
             this.Controls.Add(this.rtb_sendtcp);
             this.Controls.Add(this.btn_close);
@@ -587,8 +570,6 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MotionControl";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GUI_FormClosing);
-            this.Load += new System.EventHandler(this.GUI_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GUI_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GUI_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Map)).EndInit();
@@ -606,7 +587,6 @@
             this.groupBox8.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ImageTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbI_Video)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -617,7 +597,7 @@
 
 
         private System.Windows.Forms.Button btn_close;
-        private System.Windows.Forms.Button btn_connect;
+        private System.Windows.Forms.Button btn_RCWS_connect;
         private System.Windows.Forms.Button btn_Permission;
         private System.Windows.Forms.Button btn_disconnect;
 
@@ -664,10 +644,8 @@
         private System.Windows.Forms.ToolStripMenuItem enemyConcentrationToolStripMenuItem;
         private System.Windows.Forms.Button btn_fire;
         private System.Windows.Forms.Button btn_takeaim;
-        private System.Windows.Forms.PictureBox pictureBox_ImageTest;
-        private System.Windows.Forms.Button btn_setting;
+        private System.Windows.Forms.Button btn_Camera_connect;
         private OpenCvSharp.UserInterface.PictureBoxIpl pbI_Video;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lb_x;
         private System.Windows.Forms.Label lb_y;
         private System.Windows.Forms.Label lb_xx;

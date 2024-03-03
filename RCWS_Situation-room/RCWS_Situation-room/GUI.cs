@@ -19,8 +19,10 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Windows.Forms.Design;
 using System.Net.Http;
+//using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.WebControls;
 using OpenCvSharp;
-using OpenCvSharp.UserInterface;
 
 namespace RCWS_Situation_room
 {
@@ -51,10 +53,13 @@ namespace RCWS_Situation_room
         Packet.ReceiveTCP receivedStruct;
 
         /* Video */
-        CvCapture capture;
-        IplImage src;
-        OpenCV Convert = new OpenCV();
+        //CvCapture capture;
+        //IplImage src;
+        //OpenCV Convert = new OpenCV();
         #endregion
+
+        UdpClient udpClient;
+        IPEndPoint endPoint;
 
         public GUI(StreamWriter streamWriter)
         {
@@ -400,28 +405,29 @@ namespace RCWS_Situation_room
         private void UdpConnect()
         {
             MemoryStream ms = new MemoryStream();
-            UdpClient udpClient = new UdpClient();
-            IPEndPoint ep = new IPEndPoint(IPAddress.Any, 0);
-
+            //UdpClient udpClient = new UdpClient();
+            //IPEndPoint ep = new IPEndPoint(IPAddress.Any, 0);
+            
             try
             {
-                SendUdp("Waiting for data...");
+                StartReceiving(define.SERVER_IP, define.UDPPORT);
+                //SendUdp("Waiting for data...");
 
-                while (true)
-                {
-                    byte[] data = udpClient.Receive(ref ep);
+                //while (true)
+                //{
+                //    byte[] data = udpClient.Receive(ref ep);
 
-                    ms.Write(data, 0, data.Length);
+                //    ms.Write(data, 0, data.Length);
 
-                    if (ms.Length < 1024) continue; // not enough data for a frame
+                //    if (ms.Length < 1024) continue; // not enough data for a frame
 
-                    this.Invoke((MethodInvoker)delegate {
-                        pictureBox_ImageTest.Image?.Dispose();
-                        pictureBox_ImageTest.Image = Image.FromStream(new MemoryStream(ms.ToArray()));
-                    });
+                //    this.Invoke((MethodInvoker)delegate {
+                //        pictureBox_ImageTest.Image?.Dispose();
+                //        pictureBox_ImageTest.Image = Image.FromStream(new MemoryStream(ms.ToArray()));
+                //    });
 
-                    ms.SetLength(0); // clear the stream for next frame
-                }
+                //    ms.SetLength(0); // clear the stream for next frame
+                //}
             }
             catch (Exception ex)
             {
@@ -430,14 +436,57 @@ namespace RCWS_Situation_room
             }
         }
 
-        private async void btn_connect_Click(object sender, EventArgs e)
+        private void StartReceiving(string ip, int port)
         {
-            await Task.Run(() => TcpConnectAsync());
+            udpClient = new UdpClient(8000);
+            endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+
+            // 비동기적으로 데이터 수신 시작
+            udpClient.BeginReceive(new AsyncCallback(ReceiveCallback), null);
         }
 
-        private void btn_udp_Click(object sender, EventArgs e)
+        private void Showvideo(byte[] Data_)
         {
-            Task.Run(() => UdpConnect());
+            this.Invoke((MethodInvoker)delegate
+            {
+                try
+                {
+                    using (var ms = new MemoryStream(Data_))
+                    {
+                        var receivedImage = System.Drawing.Image.FromStream(ms);
+                        pbI_Video.Image = receivedImage;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lb_x.Text = "Error displaying image: " + ex.Message;
+                }
+            });
+        }
+
+        private void ReceiveCallback(IAsyncResult ar)
+        {
+            byte[] receivedData = udpClient.EndReceive(ar, ref endPoint);
+
+            if (receivedData.Length < 65000)
+            {
+                Showvideo(receivedData);
+            }
+            else
+            {
+                byte[] dgram = udpClient.Receive(ref endPoint);
+                if (dgram.Length < 65000)
+                {
+                    Showvideo(receivedData.Concat(dgram).ToArray());
+                }
+                else
+                {
+                    byte[] dgram_ = receivedData.Concat(dgram).ToArray();
+                    byte[] dgram__ = udpClient.Receive(ref endPoint);
+                    Showvideo(dgram_.Concat(dgram__).ToArray());
+                }
+            }
+            udpClient.BeginReceive(new AsyncCallback(ReceiveCallback), null);
         }
 
         private void SendTcp(string str)
@@ -546,7 +595,7 @@ namespace RCWS_Situation_room
             {
                 try
                 {
-                    using (Image image = Image.FromFile(path))
+                    using (System.Drawing.Image image = System.Drawing.Image.FromFile(path))
                     {
                         Point clickLocation = new Point(pictureBox_azimuth.Width / 2, pictureBox_azimuth.Height / 2);
                         g.DrawImage(image, clickLocation.X - image.Width / 2, clickLocation.Y - image.Height / 2);
@@ -577,39 +626,14 @@ namespace RCWS_Situation_room
             RCWSCam.Kill();
         }
 
-        private void GUI_Load(object sender, EventArgs e)
+        private async void btn_RCWS_Connect_Click(object sender, EventArgs e)
         {
-            try
-            {
-                capture = CvCapture.FromCamera(CaptureDevice.DShow, 1);
-                capture.SetCaptureProperty(CaptureProperty.FrameWidth, 640);
-                capture.SetCaptureProperty(CaptureProperty.FrameHeight, 480);
-            }
-            catch
-            {
-                timer1.Enabled = false;
-            }
+            await Task.Run(() => TcpConnectAsync());
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void btn_Camera_Connect_Click(object sender, EventArgs e)
         {
-            src = capture.QueryFrame();
-            pbI_Video.ImageIpl = src;
-
-            #region detect moment
-            var MomentResult = Convert.Moment(src);
-            pbI_Video.ImageIpl = MomentResult.Item1;
-            lb_xx.Text = MomentResult.Item2.ToString();
-            lb_yy.Text = MomentResult.Item3.ToString();
-
-            Point center = new Point(MomentResult.Item2, MomentResult.Item3);
-            #endregion
-        }
-
-        private void GUI_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Cv.ReleaseImage(src);
-            if (src != null) src.Dispose();
+            Task.Run(() => UdpConnect());
         }
     }
 }
