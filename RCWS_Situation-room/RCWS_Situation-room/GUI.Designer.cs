@@ -74,6 +74,12 @@
             this.enemyConcentrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox_ImageTest = new System.Windows.Forms.PictureBox();
             this.btn_setting = new System.Windows.Forms.Button();
+            this.pbI_Video = new OpenCvSharp.UserInterface.PictureBoxIpl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lb_x = new System.Windows.Forms.Label();
+            this.lb_y = new System.Windows.Forms.Label();
+            this.lb_xx = new System.Windows.Forms.Label();
+            this.lb_yy = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Map)).BeginInit();
             this.pn_mapcontainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_azimuth)).BeginInit();
@@ -86,6 +92,7 @@
             this.groupBox5.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ImageTest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbI_Video)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox_Map
@@ -506,10 +513,62 @@
             this.btn_setting.UseVisualStyleBackColor = true;
             this.btn_setting.Click += new System.EventHandler(this.btn_udp_Click);
             // 
+            // pbI_Video
+            // 
+            this.pbI_Video.Location = new System.Drawing.Point(1558, 86);
+            this.pbI_Video.Name = "pbI_Video";
+            this.pbI_Video.Size = new System.Drawing.Size(529, 603);
+            this.pbI_Video.TabIndex = 21;
+            this.pbI_Video.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lb_x
+            // 
+            this.lb_x.AutoSize = true;
+            this.lb_x.Location = new System.Drawing.Point(1556, 704);
+            this.lb_x.Name = "lb_x";
+            this.lb_x.Size = new System.Drawing.Size(21, 12);
+            this.lb_x.TabIndex = 22;
+            this.lb_x.Text = "X: ";
+            // 
+            // lb_y
+            // 
+            this.lb_y.AutoSize = true;
+            this.lb_y.Location = new System.Drawing.Point(1556, 738);
+            this.lb_y.Name = "lb_y";
+            this.lb_y.Size = new System.Drawing.Size(21, 12);
+            this.lb_y.TabIndex = 23;
+            this.lb_y.Text = "Y: ";
+            // 
+            // lb_xx
+            // 
+            this.lb_xx.AutoSize = true;
+            this.lb_xx.Location = new System.Drawing.Point(1630, 704);
+            this.lb_xx.Name = "lb_xx";
+            this.lb_xx.Size = new System.Drawing.Size(0, 12);
+            this.lb_xx.TabIndex = 24;
+            // 
+            // lb_yy
+            // 
+            this.lb_yy.AutoSize = true;
+            this.lb_yy.Location = new System.Drawing.Point(1630, 738);
+            this.lb_yy.Name = "lb_yy";
+            this.lb_yy.Size = new System.Drawing.Size(0, 12);
+            this.lb_yy.TabIndex = 25;
+            // 
             // GUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(2132, 782);
+            this.Controls.Add(this.lb_yy);
+            this.Controls.Add(this.lb_xx);
+            this.Controls.Add(this.lb_y);
+            this.Controls.Add(this.lb_x);
+            this.Controls.Add(this.pbI_Video);
             this.Controls.Add(this.btn_setting);
             this.Controls.Add(this.pictureBox_ImageTest);
             this.Controls.Add(this.btn_disconnect);
@@ -528,6 +587,8 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MotionControl";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GUI_FormClosing);
+            this.Load += new System.EventHandler(this.GUI_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GUI_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GUI_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Map)).EndInit();
@@ -546,7 +607,9 @@
             this.groupBox5.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ImageTest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbI_Video)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -603,5 +666,11 @@
         private System.Windows.Forms.Button btn_takeaim;
         private System.Windows.Forms.PictureBox pictureBox_ImageTest;
         private System.Windows.Forms.Button btn_setting;
+        private OpenCvSharp.UserInterface.PictureBoxIpl pbI_Video;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lb_x;
+        private System.Windows.Forms.Label lb_y;
+        private System.Windows.Forms.Label lb_xx;
+        private System.Windows.Forms.Label lb_yy;
     }
 }

@@ -35,3 +35,11 @@ C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-r
 C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.csproj.CoreCompileInputs.cache
 C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.exe
 C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.pdb
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.xml
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.dll.config
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.Blob.xml
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.Blob.dll.config
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.CPlusPlus.xml
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.CPlusPlus.dll.config
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.Extensions.xml
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.csproj.CopyComplete

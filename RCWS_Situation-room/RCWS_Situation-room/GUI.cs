@@ -19,6 +19,8 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Windows.Forms.Design;
 using System.Net.Http;
+using OpenCvSharp;
+using OpenCvSharp.UserInterface;
 
 namespace RCWS_Situation_room
 {
@@ -47,6 +49,11 @@ namespace RCWS_Situation_room
         /* Packet */
         Packet.SendTCP command;
         Packet.ReceiveTCP receivedStruct;
+
+        /* Video */
+        CvCapture capture;
+        IplImage src;
+        OpenCV Convert = new OpenCV();
         #endregion
 
         public GUI(StreamWriter streamWriter)
@@ -225,7 +232,7 @@ namespace RCWS_Situation_room
             /* */
 
             /* optical data */
-            if (pressedKeys.Contains(Keys.Z) && pressedKeys.Contains(Keys.I)) //배율 확대 C# GUI -> Arduino
+            if (pressedKeys.Contains(Keys.Z) && pressedKeys.Contains(Keys.I))
             {
                 try
                 {
@@ -237,7 +244,7 @@ namespace RCWS_Situation_room
                 }
             }
 
-            if (pressedKeys.Contains(Keys.Z) && pressedKeys.Contains(Keys.O)) //배율 축소 C# GUI -> Arduino
+            if (pressedKeys.Contains(Keys.Z) && pressedKeys.Contains(Keys.O))
             {
                 try
                 {
@@ -570,6 +577,39 @@ namespace RCWS_Situation_room
             RCWSCam.Kill();
         }
 
-        
+        private void GUI_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                capture = CvCapture.FromCamera(CaptureDevice.DShow, 1);
+                capture.SetCaptureProperty(CaptureProperty.FrameWidth, 640);
+                capture.SetCaptureProperty(CaptureProperty.FrameHeight, 480);
+            }
+            catch
+            {
+                timer1.Enabled = false;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            src = capture.QueryFrame();
+            pbI_Video.ImageIpl = src;
+
+            #region detect moment
+            var MomentResult = Convert.Moment(src);
+            pbI_Video.ImageIpl = MomentResult.Item1;
+            lb_xx.Text = MomentResult.Item2.ToString();
+            lb_yy.Text = MomentResult.Item3.ToString();
+
+            Point center = new Point(MomentResult.Item2, MomentResult.Item3);
+            #endregion
+        }
+
+        private void GUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Cv.ReleaseImage(src);
+            if (src != null) src.Dispose();
+        }
     }
 }
