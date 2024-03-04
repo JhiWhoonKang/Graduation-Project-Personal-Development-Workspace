@@ -405,33 +405,14 @@ namespace RCWS_Situation_room
         private void UdpConnect()
         {
             MemoryStream ms = new MemoryStream();
-            //UdpClient udpClient = new UdpClient();
-            //IPEndPoint ep = new IPEndPoint(IPAddress.Any, 0);
             
             try
             {
                 StartReceiving(define.SERVER_IP, define.UDPPORT);
-                //SendUdp("Waiting for data...");
-
-                //while (true)
-                //{
-                //    byte[] data = udpClient.Receive(ref ep);
-
-                //    ms.Write(data, 0, data.Length);
-
-                //    if (ms.Length < 1024) continue; // not enough data for a frame
-
-                //    this.Invoke((MethodInvoker)delegate {
-                //        pictureBox_ImageTest.Image?.Dispose();
-                //        pictureBox_ImageTest.Image = Image.FromStream(new MemoryStream(ms.ToArray()));
-                //    });
-
-                //    ms.SetLength(0); // clear the stream for next frame
-                //}
             }
             catch (Exception ex)
             {
-                ReceiveUdp("ERROR: " + ex.Message);
+                SendUdp("Send Data: ");
                 return;
             }
         }
@@ -441,9 +422,8 @@ namespace RCWS_Situation_room
             udpClient = new UdpClient(8000);
             endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
 
-            // 비동기적으로 데이터 수신 시작
             udpClient.BeginReceive(new AsyncCallback(ReceiveCallback), null);
-        }
+        }       
 
         private void Showvideo(byte[] Data_)
         {
@@ -487,6 +467,49 @@ namespace RCWS_Situation_room
                 }
             }
             udpClient.BeginReceive(new AsyncCallback(ReceiveCallback), null);
+        }
+
+        private void SendUdpData(string serverIp, int port, bool mouse_L, bool mouse_R)
+        {
+            try
+            {
+                UdpClient client = new UdpClient();
+
+                byte[] bytes = new byte[2];
+                bytes[0] = Convert.ToByte(mouse_L);
+                bytes[1] = Convert.ToByte(mouse_R);
+
+                client.Send(bytes, bytes.Length, serverIp, port);
+
+                client.Close();
+            }
+            catch (Exception ex)
+            {   
+                Console.WriteLine("ERROR: " + ex.Message);
+            }
+        }
+
+        private void SendUdpData(string serverIp, int port, bool mouse_L, bool mouse_R, int x, int y)
+        {
+            try
+            {
+                UdpClient client = new UdpClient();
+
+                byte[] mouse_L_bytes = BitConverter.GetBytes(mouse_L);
+                byte[] mouse_R_bytes = BitConverter.GetBytes(mouse_R);
+                byte[] x_bytes = BitConverter.GetBytes(x);
+                byte[] y_bytes = BitConverter.GetBytes(y);
+
+                byte[] bytes = mouse_L_bytes.Concat(mouse_R_bytes).Concat(x_bytes).Concat(y_bytes).ToArray();
+
+                client.Send(bytes, bytes.Length, serverIp, port);
+
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex.Message);
+            }
         }
 
         private void SendTcp(string str)
@@ -634,6 +657,45 @@ namespace RCWS_Situation_room
         private void btn_Camera_Connect_Click(object sender, EventArgs e)
         {
             Task.Run(() => UdpConnect());
+        }
+
+        private void pbI_Video_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if(e.X==320)
+                {
+                    lb_x.Text = "0";
+                }
+                else if(e.X>320)
+                {
+                    lb_x.Text = "" + e.X / 2;
+                }
+                else
+                {
+                    lb_x.Text = "" + (e.X / 2 - 1);
+                }
+
+                if(e.Y==240)
+                {
+                    lb_y.Text= "0";
+                }
+                else if(e.Y>240)
+                {
+                    lb_y.Text = "" + e.Y / 2;
+                }
+                else
+                {
+                    lb_y.Text = "" + (e.Y / 2 - 1);
+                }
+
+                SendUdpData(define.SERVER_IP, define.UDPPORT2, true, false, e.X, e.Y);
+            }
+
+            if(e.Button == MouseButtons.Right)
+            {
+                SendUdpData(define.SERVER_IP, define.UDPPORT2, false, true);
+            }
         }
     }
 }

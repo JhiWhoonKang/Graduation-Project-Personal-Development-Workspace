@@ -17,6 +17,7 @@ namespace RCWS_Situation_room
 
         public const int TCPPORT = 9001;
         public const int UDPPORT = 8000;
+        public const int UDPPORT2 = 8001;
 
         public const int MAX_ANGLE = 0;
         public const int MIN_ANGLE = 0;
