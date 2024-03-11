@@ -4,9 +4,6 @@
 // relAxis range -8388607 ~ 8388607
 // Dir 0(CCW), 1(CW)
 // CRC = (ID + byte1 + … + byte(n) ) & 0xFF
-// CAN ID 3 = Weapon
-// CAN ID 4 = Optical TILT
-// CAN ID 5 = Body PAN
 // ******************************************************************************
 #include <FlexCAN_T4.h>
 
@@ -19,9 +16,6 @@ int speedIndex, accIndex, dirIndex, relAxisIndex; //index
 int speed;
 int upperspeedByte, lowerspeedByte, accByte, dirByte, relAxisByte1, relAxisByte2, relAxisByte3; //speed
 long relAxisByte;
-volatile bool dataFlag = false;
-volatile int panValue = 0;
-volatile int tiltValue = 0;
 
 void setup() 
 {
@@ -55,12 +49,6 @@ void setup()
 
 void loop() 
 {
-  if(dataFlag)
-  {
-    RunPositionMode();
-    dataFlag = false;
-  }
-
   if (Serial.available()) 
   {
     String input = Serial.readString();
@@ -314,48 +302,4 @@ void loop()
     Serial.printf(" | time:%d \n\r", millis());
     Serial.println("---------------------------rx_");
   }
-}
-
-void serialEvent()
-{
-  if(Serial.available())
-  {
-    panValue = Serial.parseInt();
-    if(Serial.read() == ',')
-    {
-      tiltValue = Serial.parseInt();
-    }
-    dataFlag = true;
-  }
-}
-
-void RunPositionMode()
-{
-  Serial.println("Run Position Mode")
-  RunPan();
-  RunTilt();
-}
-
-void RunPan(int pan)
-{
-  pan = panValue;
-  txmsg.id = 5
-  txmsg.len = 5;
-  txmsg.buf[0] = 0xF6;
-  txmsg.buf[1] = dirByte + upperspeedByte;
-  txmsg.buf[2] = lowerspeedByte;
-  txmsg.buf[3] = accByte;
-  txmsg.buf[4] = (txmsg.id + txmsg.buf[0] + txmsg.buf[1] + txmsg.buf[2] + txmsg.buf[3]) & 0xFF;
-}
-
-void RunTilt(int tilt)
-{
-  tilt = tiltValue;
-  txmsg.id = 4
-  txmsg.len = 5;
-  txmsg.buf[0] = 0xF6;
-  txmsg.buf[1] = dirByte + upperspeedByte;
-  txmsg.buf[2] = lowerspeedByte;
-  txmsg.buf[3] = accByte;
-  txmsg.buf[4] = (txmsg.id + txmsg.buf[0] + txmsg.buf[1] + txmsg.buf[2] + txmsg.buf[3]) & 0xFF;
 }
