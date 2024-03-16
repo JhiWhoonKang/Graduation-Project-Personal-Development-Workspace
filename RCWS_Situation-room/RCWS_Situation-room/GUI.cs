@@ -543,7 +543,7 @@ namespace RCWS_Situation_room
             var g = e.Graphics;
 
             int centerX = pictureBox_azimuth.Width / 2;
-            int centerY = pictureBox_azimuth.Height / 2;
+            int centerY = pictureBox_azimuth.Height / 3 * 2;
 
             /* */
             Pen redPen = new Pen(Color.Red, 8);
@@ -553,8 +553,8 @@ namespace RCWS_Situation_room
             /* */
 
             /* */
-            int lineLength = centerX;
-            g.DrawEllipse(Pens.Black, 0, 0, pictureBox_azimuth.Width - 1, pictureBox_azimuth.Height - 1);
+            int lineLength = centerX * 2;
+            //g.DrawEllipse(Pens.Black, 0, 0, pictureBox_azimuth.Width - 1, pictureBox_azimuth.Height - 1);
             /* */
 
             /* Body Pan */
