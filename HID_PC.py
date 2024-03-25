@@ -9,8 +9,15 @@ try:
     device.open(VID, PID)
 
     send_data = [0] * 64
-    send_data[0] = 5
-    send_data[1] = 3
+    #send_data[0] = 5
+    send_data[1] = 1
+    send_data[2] = 0xF3
+    send_data[3] = 0xF3
+    send_data[4] = 0xF3
+    send_data[5] = 0xF3
+    send_data[6] = 0xF3
+    send_data[7] = 0xF3
+    send_data[2] = 0xF3
     send_data[63] = 3
     #send_data[64]=2
 
