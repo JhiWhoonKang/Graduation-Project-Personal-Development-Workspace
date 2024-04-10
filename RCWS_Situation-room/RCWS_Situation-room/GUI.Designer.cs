@@ -74,10 +74,10 @@
             this.enemyConcentrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_Camera_connect = new System.Windows.Forms.Button();
             this.pbI_Video = new OpenCvSharp.UserInterface.PictureBoxIpl();
-            this.lb_x = new System.Windows.Forms.Label();
-            this.lb_y = new System.Windows.Forms.Label();
             this.lb_xx = new System.Windows.Forms.Label();
             this.lb_yy = new System.Windows.Forms.Label();
+            this.lb_y = new System.Windows.Forms.Label();
+            this.lb_x = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Map)).BeginInit();
             this.pn_mapcontainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_azimuth)).BeginInit();
@@ -512,24 +512,6 @@
             this.pbI_Video.TabStop = false;
             this.pbI_Video.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbI_Video_MouseClick);
             // 
-            // lb_x
-            // 
-            this.lb_x.AutoSize = true;
-            this.lb_x.Location = new System.Drawing.Point(616, 27);
-            this.lb_x.Name = "lb_x";
-            this.lb_x.Size = new System.Drawing.Size(31, 18);
-            this.lb_x.TabIndex = 22;
-            this.lb_x.Text = "X: ";
-            // 
-            // lb_y
-            // 
-            this.lb_y.AutoSize = true;
-            this.lb_y.Location = new System.Drawing.Point(721, 27);
-            this.lb_y.Name = "lb_y";
-            this.lb_y.Size = new System.Drawing.Size(31, 18);
-            this.lb_y.TabIndex = 23;
-            this.lb_y.Text = "Y: ";
-            // 
             // lb_xx
             // 
             this.lb_xx.AutoSize = true;
@@ -545,6 +527,22 @@
             this.lb_yy.Name = "lb_yy";
             this.lb_yy.Size = new System.Drawing.Size(0, 18);
             this.lb_yy.TabIndex = 25;
+            // 
+            // lb_y
+            // 
+            this.lb_y.AutoSize = true;
+            this.lb_y.Location = new System.Drawing.Point(721, 27);
+            this.lb_y.Name = "lb_y";
+            this.lb_y.Size = new System.Drawing.Size(0, 18);
+            this.lb_y.TabIndex = 23;
+            // 
+            // lb_x
+            // 
+            this.lb_x.AutoSize = true;
+            this.lb_x.Location = new System.Drawing.Point(616, 27);
+            this.lb_x.Name = "lb_x";
+            this.lb_x.Size = new System.Drawing.Size(0, 18);
+            this.lb_x.TabIndex = 22;
             // 
             // GUI
             // 
@@ -648,9 +646,9 @@
         private System.Windows.Forms.Button btn_takeaim;
         private System.Windows.Forms.Button btn_Camera_connect;
         private OpenCvSharp.UserInterface.PictureBoxIpl pbI_Video;
-        private System.Windows.Forms.Label lb_x;
-        private System.Windows.Forms.Label lb_y;
         private System.Windows.Forms.Label lb_xx;
         private System.Windows.Forms.Label lb_yy;
+        private System.Windows.Forms.Label lb_y;
+        private System.Windows.Forms.Label lb_x;
     }
 }
