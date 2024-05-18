@@ -121,4 +121,28 @@
   <data name="demomap" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\demomap.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RCWS_논문_외형1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RCWS_논문_외형1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>close_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="database_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>database_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="list_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>list_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logout_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>logout_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="optical_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>optical_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reticle_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>reticle_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="weapon_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>weapon_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -78,6 +78,9 @@
             this.lb_yy = new System.Windows.Forms.Label();
             this.lb_y = new System.Windows.Forms.Label();
             this.lb_x = new System.Windows.Forms.Label();
+            this.addPinPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePinPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_setting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Map)).BeginInit();
             this.pn_mapcontainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_azimuth)).BeginInit();
@@ -164,14 +167,14 @@
             // 
             this.tb_body_azimuth.Location = new System.Drawing.Point(6, 38);
             this.tb_body_azimuth.Name = "tb_body_azimuth";
-            this.tb_body_azimuth.Size = new System.Drawing.Size(84, 28);
+            this.tb_body_azimuth.Size = new System.Drawing.Size(84, 21);
             this.tb_body_azimuth.TabIndex = 7;
             // 
             // tb_body_elevation
             // 
             this.tb_body_elevation.Location = new System.Drawing.Point(96, 38);
             this.tb_body_elevation.Name = "tb_body_elevation";
-            this.tb_body_elevation.Size = new System.Drawing.Size(84, 28);
+            this.tb_body_elevation.Size = new System.Drawing.Size(84, 21);
             this.tb_body_elevation.TabIndex = 8;
             // 
             // label1
@@ -179,7 +182,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 18);
+            this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 9;
             this.label1.Text = "방위각";
             // 
@@ -188,7 +191,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(94, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 18);
+            this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 10;
             this.label2.Text = "고각";
             // 
@@ -226,7 +229,7 @@
             // 
             this.tb_optical_azimuth.Location = new System.Drawing.Point(6, 38);
             this.tb_optical_azimuth.Name = "tb_optical_azimuth";
-            this.tb_optical_azimuth.Size = new System.Drawing.Size(84, 28);
+            this.tb_optical_azimuth.Size = new System.Drawing.Size(84, 21);
             this.tb_optical_azimuth.TabIndex = 7;
             // 
             // label3
@@ -234,7 +237,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(4, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 18);
+            this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 9;
             this.label3.Text = "방위각";
             // 
@@ -243,7 +246,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(94, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 18);
+            this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 10;
             this.label4.Text = "고각";
             // 
@@ -251,7 +254,7 @@
             // 
             this.tb_optical_elevation.Location = new System.Drawing.Point(96, 38);
             this.tb_optical_elevation.Name = "tb_optical_elevation";
-            this.tb_optical_elevation.Size = new System.Drawing.Size(84, 28);
+            this.tb_optical_elevation.Size = new System.Drawing.Size(84, 21);
             this.tb_optical_elevation.TabIndex = 8;
             // 
             // btn_Permission
@@ -328,7 +331,7 @@
             // 
             this.tb_gunvoltage.Location = new System.Drawing.Point(6, 174);
             this.tb_gunvoltage.Name = "tb_gunvoltage";
-            this.tb_gunvoltage.Size = new System.Drawing.Size(105, 28);
+            this.tb_gunvoltage.Size = new System.Drawing.Size(105, 21);
             this.tb_gunvoltage.TabIndex = 20;
             // 
             // label7
@@ -336,7 +339,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(5, 159);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 18);
+            this.label7.Size = new System.Drawing.Size(74, 12);
             this.label7.TabIndex = 29;
             this.label7.Text = "Gun Voltage";
             // 
@@ -345,7 +348,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(4, 24);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 18);
+            this.label8.Size = new System.Drawing.Size(59, 12);
             this.label8.TabIndex = 27;
             this.label8.Text = "Take Aim";
             // 
@@ -353,7 +356,7 @@
             // 
             this.tb_RemainingBullets.Location = new System.Drawing.Point(6, 126);
             this.tb_RemainingBullets.Name = "tb_RemainingBullets";
-            this.tb_RemainingBullets.Size = new System.Drawing.Size(105, 28);
+            this.tb_RemainingBullets.Size = new System.Drawing.Size(105, 21);
             this.tb_RemainingBullets.TabIndex = 24;
             // 
             // label11
@@ -361,7 +364,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(4, 111);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(148, 18);
+            this.label11.Size = new System.Drawing.Size(107, 12);
             this.label11.TabIndex = 26;
             this.label11.Text = "Remaining Bullets";
             // 
@@ -370,7 +373,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(5, 67);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(36, 18);
+            this.label13.Size = new System.Drawing.Size(26, 12);
             this.label13.TabIndex = 25;
             this.label13.Text = "Fire";
             // 
@@ -395,7 +398,7 @@
             // 
             this.tb_Magnification.Location = new System.Drawing.Point(6, 39);
             this.tb_Magnification.Name = "tb_Magnification";
-            this.tb_Magnification.Size = new System.Drawing.Size(105, 28);
+            this.tb_Magnification.Size = new System.Drawing.Size(105, 21);
             this.tb_Magnification.TabIndex = 22;
             // 
             // label12
@@ -403,7 +406,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(6, 24);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(113, 18);
+            this.label12.Size = new System.Drawing.Size(80, 12);
             this.label12.TabIndex = 21;
             this.label12.Text = "Magnification";
             // 
@@ -411,7 +414,7 @@
             // 
             this.tb_Pointdistance.Location = new System.Drawing.Point(6, 126);
             this.tb_Pointdistance.Name = "tb_Pointdistance";
-            this.tb_Pointdistance.Size = new System.Drawing.Size(105, 28);
+            this.tb_Pointdistance.Size = new System.Drawing.Size(105, 21);
             this.tb_Pointdistance.TabIndex = 12;
             // 
             // label6
@@ -419,7 +422,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(4, 111);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 18);
+            this.label6.Size = new System.Drawing.Size(86, 12);
             this.label6.TabIndex = 14;
             this.label6.Text = "Point Distance";
             // 
@@ -427,7 +430,7 @@
             // 
             this.tb_Distance.Location = new System.Drawing.Point(6, 82);
             this.tb_Distance.Name = "tb_Distance";
-            this.tb_Distance.Size = new System.Drawing.Size(105, 28);
+            this.tb_Distance.Size = new System.Drawing.Size(105, 21);
             this.tb_Distance.TabIndex = 11;
             // 
             // label5
@@ -435,7 +438,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 67);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 18);
+            this.label5.Size = new System.Drawing.Size(54, 12);
             this.label5.TabIndex = 13;
             this.label5.Text = "Distance";
             // 
@@ -470,26 +473,26 @@
             this.enemyMovementToolStripMenuItem,
             this.enemyConcentrationToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(295, 100);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(214, 70);
             // 
             // suspectedEnemyActivityToolStripMenuItem
             // 
             this.suspectedEnemyActivityToolStripMenuItem.Name = "suspectedEnemyActivityToolStripMenuItem";
-            this.suspectedEnemyActivityToolStripMenuItem.Size = new System.Drawing.Size(294, 32);
+            this.suspectedEnemyActivityToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.suspectedEnemyActivityToolStripMenuItem.Text = "Suspected Enemy Activity";
             this.suspectedEnemyActivityToolStripMenuItem.Click += new System.EventHandler(this.suspectedEnemyActivityToolStripMenuItem_Click);
             // 
             // enemyMovementToolStripMenuItem
             // 
             this.enemyMovementToolStripMenuItem.Name = "enemyMovementToolStripMenuItem";
-            this.enemyMovementToolStripMenuItem.Size = new System.Drawing.Size(294, 32);
+            this.enemyMovementToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.enemyMovementToolStripMenuItem.Text = "Enemy Movement";
             this.enemyMovementToolStripMenuItem.Click += new System.EventHandler(this.enemyMovementToolStripMenuItem_Click);
             // 
             // enemyConcentrationToolStripMenuItem
             // 
             this.enemyConcentrationToolStripMenuItem.Name = "enemyConcentrationToolStripMenuItem";
-            this.enemyConcentrationToolStripMenuItem.Size = new System.Drawing.Size(294, 32);
+            this.enemyConcentrationToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.enemyConcentrationToolStripMenuItem.Text = "Enemy Concentration";
             this.enemyConcentrationToolStripMenuItem.Click += new System.EventHandler(this.enemyConcentrationToolStripMenuItem_Click);
             // 
@@ -510,6 +513,7 @@
             this.pbI_Video.Size = new System.Drawing.Size(640, 480);
             this.pbI_Video.TabIndex = 21;
             this.pbI_Video.TabStop = false;
+            this.pbI_Video.Paint += new System.Windows.Forms.PaintEventHandler(this.pbI_Video_Paint);
             this.pbI_Video.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbI_Video_MouseClick);
             // 
             // lb_xx
@@ -517,7 +521,7 @@
             this.lb_xx.AutoSize = true;
             this.lb_xx.Location = new System.Drawing.Point(1630, 704);
             this.lb_xx.Name = "lb_xx";
-            this.lb_xx.Size = new System.Drawing.Size(0, 18);
+            this.lb_xx.Size = new System.Drawing.Size(0, 12);
             this.lb_xx.TabIndex = 24;
             // 
             // lb_yy
@@ -525,7 +529,7 @@
             this.lb_yy.AutoSize = true;
             this.lb_yy.Location = new System.Drawing.Point(1630, 738);
             this.lb_yy.Name = "lb_yy";
-            this.lb_yy.Size = new System.Drawing.Size(0, 18);
+            this.lb_yy.Size = new System.Drawing.Size(0, 12);
             this.lb_yy.TabIndex = 25;
             // 
             // lb_y
@@ -533,7 +537,7 @@
             this.lb_y.AutoSize = true;
             this.lb_y.Location = new System.Drawing.Point(721, 27);
             this.lb_y.Name = "lb_y";
-            this.lb_y.Size = new System.Drawing.Size(0, 18);
+            this.lb_y.Size = new System.Drawing.Size(0, 12);
             this.lb_y.TabIndex = 23;
             // 
             // lb_x
@@ -541,13 +545,38 @@
             this.lb_x.AutoSize = true;
             this.lb_x.Location = new System.Drawing.Point(616, 27);
             this.lb_x.Name = "lb_x";
-            this.lb_x.Size = new System.Drawing.Size(0, 18);
+            this.lb_x.Size = new System.Drawing.Size(0, 12);
             this.lb_x.TabIndex = 22;
+            // 
+            // addPinPointToolStripMenuItem
+            // 
+            this.addPinPointToolStripMenuItem.Name = "addPinPointToolStripMenuItem";
+            this.addPinPointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addPinPointToolStripMenuItem.Text = "Add Pin Point";
+            this.addPinPointToolStripMenuItem.Click += new System.EventHandler(this.addPinPointToolStripMenuItem_Click);
+            // 
+            // deletePinPointToolStripMenuItem
+            // 
+            this.deletePinPointToolStripMenuItem.Name = "deletePinPointToolStripMenuItem";
+            this.deletePinPointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deletePinPointToolStripMenuItem.Text = "Delete Pin Point";
+            this.deletePinPointToolStripMenuItem.Click += new System.EventHandler(this.deletePinPointToolStripMenuItem_Click);
+            // 
+            // btn_setting
+            // 
+            this.btn_setting.Location = new System.Drawing.Point(337, 13);
+            this.btn_setting.Name = "btn_setting";
+            this.btn_setting.Size = new System.Drawing.Size(122, 46);
+            this.btn_setting.TabIndex = 26;
+            this.btn_setting.Text = "Setting";
+            this.btn_setting.UseVisualStyleBackColor = true;
+            this.btn_setting.Click += new System.EventHandler(this.Setting_Click);
             // 
             // GUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(2105, 782);
+            this.Controls.Add(this.btn_setting);
             this.Controls.Add(this.lb_yy);
             this.Controls.Add(this.lb_xx);
             this.Controls.Add(this.lb_y);
@@ -650,5 +679,8 @@
         private System.Windows.Forms.Label lb_yy;
         private System.Windows.Forms.Label lb_y;
         private System.Windows.Forms.Label lb_x;
+        private System.Windows.Forms.ToolStripMenuItem addPinPointToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deletePinPointToolStripMenuItem;
+        private System.Windows.Forms.Button btn_setting;
     }
 }

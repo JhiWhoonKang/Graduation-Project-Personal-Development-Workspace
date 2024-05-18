@@ -43,3 +43,4 @@ C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-r
 C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.CPlusPlus.dll.config
 C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\bin\Debug\OpenCvSharp.Extensions.xml
 C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation-room.csproj.CopyComplete
+C:\JHIWHOON_ws\github_ws\Graduation-Project\RCWS_Situation-room\RCWS_Situation-room\obj\Debug\RCWS_Situation_room.Setting.resources
