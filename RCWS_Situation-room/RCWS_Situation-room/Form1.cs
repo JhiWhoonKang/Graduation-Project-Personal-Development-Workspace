@@ -18,7 +18,7 @@ namespace RCWS_Situation_room
     public partial class Form1 : Form
     {
         static Process RCWSCam;
-
+        FormDataSetting formDataSetting = new FormDataSetting();
         public Form1()
         {
             InitializeComponent();
@@ -60,7 +60,7 @@ namespace RCWS_Situation_room
             //    MessageBox.Show("Invalid User Name or Password");
 
             this.Visible = false;
-            GUI gui = new GUI(streamWriter);
+            GUI gui = new GUI(streamWriter, formDataSetting);
             gui.Show();
         }
 
@@ -76,7 +76,7 @@ namespace RCWS_Situation_room
             {
                 MessageBox.Show("Successfully Login");
                 this.Visible = false;
-                GUI gui = new GUI(streamWriter);
+                GUI gui = new GUI(streamWriter, formDataSetting);
                 gui.Show();
             }
         }

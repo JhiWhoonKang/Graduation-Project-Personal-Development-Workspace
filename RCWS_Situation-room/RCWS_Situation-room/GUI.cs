@@ -68,7 +68,6 @@ namespace RCWS_Situation_room
 
         private FormDataSetting formDataSetting;
 
-
         public GUI(StreamWriter streamWriter, FormDataSetting formDataSetting)
         {
             InitializeComponent();
