@@ -19,10 +19,8 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Windows.Forms.Design;
 using System.Net.Http;
-//using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.WebControls;
-using OpenCvSharp;
 
 namespace RCWS_Situation_room
 {
@@ -56,14 +54,25 @@ namespace RCWS_Situation_room
         //CvCapture capture;
         //IplImage src;
         //OpenCV Convert = new OpenCV();
+
+        /* AZEL Class */
+        private AZELDraw drawAZEL = new AZELDraw();
+        private Point lastposition;
         #endregion
 
         UdpClient udpClient;
-        IPEndPoint endPoint;
+        IPEndPoint endPoint;        
 
-        public GUI(StreamWriter streamWriter)
+        public static int reticle_offset_width = 0;
+        public static int reticle_offset_height = 0;
+
+        private FormDataSetting formDataSetting;
+
+
+        public GUI(StreamWriter streamWriter, FormDataSetting formDataSetting)
         {
             InitializeComponent();
+            this.formDataSetting = formDataSetting;
 
             //mapImage = new Bitmap(@"C:\Users\kangj\Downloads\RCWS-GUI-main\RCWS-GUI-main\RCWS_Situation-room\RCWS_Situation-room\demomap.bmp"); //notebook
             mapImage = new Bitmap(@"C:\JHIWHOON_ws\2023 Hanium\_file photo\demomap.bmp"); //desktop
@@ -88,6 +97,7 @@ namespace RCWS_Situation_room
             pictureBox_Map.MouseDown += MapPictureBox_MouseDown;
             pictureBox_Map.MouseMove += MapPictureBox_MouseMove;
             pictureBox_Map.MouseUp += MapPictureBox_MouseUp;
+
 
             this.streamWriter = streamWriter;
 
@@ -276,7 +286,7 @@ namespace RCWS_Situation_room
             await streamWriter.BaseStream.FlushAsync();
         }
         #endregion
-
+        
         #region TCP Connect
         private async Task TcpConnectAsync()
         {
@@ -313,6 +323,13 @@ namespace RCWS_Situation_room
                         $", BodyPan: {receivedStruct.BodyPan}, pointdistance: {receivedStruct.Permission}, Permission: {receivedStruct.Permission}" +
                         $", distance{receivedStruct.distance}, TakeAim: {receivedStruct.TakeAim}, Remaining_bullets: {receivedStruct.Remaining_bullets}" +
                         $", Magnification{receivedStruct.Magnification}, Fire: {receivedStruct.Fire}, Gun Voltage: {receivedStruct.GunVoltage}");
+
+                    string dataToShow = $"OpticalTilt: {receivedStruct.OpticalTilt}, OpticalPan: {receivedStruct.OpticalPan}, BodyTilt: {receivedStruct.BodyTilt}" +
+                $", BodyPan: {receivedStruct.BodyPan}, pointdistance: {receivedStruct.Permission}, Permission: {receivedStruct.Permission}" +
+                $", distance{receivedStruct.distance}, TakeAim: {receivedStruct.TakeAim}, Remaining_bullets: {receivedStruct.Remaining_bullets}" +
+                $", Magnification{receivedStruct.Magnification}, Fire: {receivedStruct.Fire}, Gun Voltage: {receivedStruct.GunVoltage}";
+
+                    formDataSetting.DisplayReceivedData(dataToShow);
 
                     /* picturebox display */
                     pictureBox_azimuth.Invalidate();
@@ -402,6 +419,20 @@ namespace RCWS_Situation_room
             }
         }
 
+        private void SendTcp(string str)
+        {
+            rtb_sendtcp.Invoke((MethodInvoker)delegate { rtb_sendtcp.AppendText(str + "\r\n"); });
+            rtb_sendtcp.Invoke((MethodInvoker)delegate { rtb_sendtcp.ScrollToCaret(); });
+        }
+
+        private void ReceiveTcp(string str)
+        {
+            rtb_receivetcp.Invoke((MethodInvoker)delegate { rtb_receivetcp.AppendText(str + "\r\n"); });
+            rtb_receivetcp.Invoke((MethodInvoker)delegate { rtb_receivetcp.ScrollToCaret(); });
+        }
+        #endregion
+
+        #region udp connect
         private void UdpConnect()
         {
             MemoryStream ms = new MemoryStream();
@@ -417,6 +448,49 @@ namespace RCWS_Situation_room
             }
         }
 
+        private void pbI_Video_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            Pen redPen = new Pen(Color.Red, 2);
+
+            int centerX = pbI_Video.Width / 2;
+            int centerY = pbI_Video.Height / 2;
+
+            int main_widthLength = 320;
+            int main_heighLengh = 150;
+
+            int sub_widthtLength1 = 10;
+            int sub_widthtLength2 = 20;
+            int sub_heightLength1 = 10;
+            int sub_heightLength2 = 20;
+
+            // 가로선 
+            g.DrawLine(redPen, centerX - main_widthLength / 2 + reticle_offset_width, centerY, centerX + main_widthLength / 2 + reticle_offset_width, centerY); // main 가로
+
+            g.DrawLine(redPen, centerX - sub_widthtLength1 / 2 + reticle_offset_height, centerY + 25, centerX + sub_widthtLength1 / 2 + reticle_offset_height, centerY + 25);
+            g.DrawLine(redPen, centerX - sub_widthtLength1 / 2 + reticle_offset_height, centerY + 50, centerX + sub_widthtLength1 / 2 + reticle_offset_height, centerY + 50);
+            g.DrawLine(redPen, centerX - sub_widthtLength2 / 2 + reticle_offset_height, centerY + 75, centerX + sub_widthtLength2 / 2 + reticle_offset_height, centerY + 75);
+
+            g.DrawLine(redPen, centerX - sub_widthtLength1 / 2 + reticle_offset_height, centerY - 25, centerX + sub_widthtLength1 / 2 + reticle_offset_height, centerY - 25);
+            g.DrawLine(redPen, centerX - sub_widthtLength1 / 2 + reticle_offset_height, centerY - 50, centerX + sub_widthtLength1 / 2 + reticle_offset_height, centerY - 50);
+            g.DrawLine(redPen, centerX - sub_widthtLength2 / 2 + reticle_offset_height, centerY - 75, centerX + sub_widthtLength2 / 2 + reticle_offset_height, centerY - 75);
+
+            // 세로선 
+            g.DrawLine(redPen, centerX, centerY - main_heighLengh / 2 + reticle_offset_height, centerX, centerY + main_heighLengh / 2 + reticle_offset_height); // main 세로
+
+            g.DrawLine(redPen, centerX + 40 + reticle_offset_width, centerY - sub_heightLength1 / 2, centerX + 40 + reticle_offset_width, centerY + sub_heightLength1 / 2);
+            g.DrawLine(redPen, centerX + 80 + reticle_offset_width, centerY - sub_heightLength1 / 2, centerX + 80 + reticle_offset_width, centerY + sub_heightLength1 / 2);
+            g.DrawLine(redPen, centerX + 120 + reticle_offset_width, centerY - sub_heightLength1 / 2, centerX + 120 + reticle_offset_width, centerY + sub_heightLength1 / 2);
+            g.DrawLine(redPen, centerX + 160 + reticle_offset_width, centerY - sub_heightLength2 / 2, centerX + 160 + reticle_offset_width, centerY + sub_heightLength2 / 2);
+
+            g.DrawLine(redPen, centerX - 40 + reticle_offset_width, centerY - sub_heightLength1 / 2, centerX - 40 + reticle_offset_width, centerY + sub_heightLength1 / 2);
+            g.DrawLine(redPen, centerX - 80 + reticle_offset_width, centerY - sub_heightLength1 / 2, centerX - 80 + reticle_offset_width, centerY + sub_heightLength1 / 2);
+            g.DrawLine(redPen, centerX - 120 + reticle_offset_width, centerY - sub_heightLength1 / 2, centerX - 120 + reticle_offset_width, centerY + sub_heightLength1 / 2);
+            g.DrawLine(redPen, centerX - 160 + reticle_offset_width, centerY - sub_heightLength2 / 2, centerX - 160 + reticle_offset_width, centerY + sub_heightLength2 / 2);
+
+                redPen.Dispose();
+        }
         private void StartReceiving(string ip, int port)
         {
             udpClient = new UdpClient(8000);
@@ -510,19 +584,7 @@ namespace RCWS_Situation_room
             {
                 Console.WriteLine("ERROR: " + ex.Message);
             }
-        }
-
-        private void SendTcp(string str)
-        {
-            rtb_sendtcp.Invoke((MethodInvoker)delegate { rtb_sendtcp.AppendText(str + "\r\n"); });
-            rtb_sendtcp.Invoke((MethodInvoker)delegate { rtb_sendtcp.ScrollToCaret(); });
-        }
-
-        private void ReceiveTcp(string str)
-        {
-            rtb_receivetcp.Invoke((MethodInvoker)delegate { rtb_receivetcp.AppendText(str + "\r\n"); });
-            rtb_receivetcp.Invoke((MethodInvoker)delegate { rtb_receivetcp.ScrollToCaret(); });
-        }
+        }         
 
         private void SendUdp(string str)
         {
@@ -538,6 +600,7 @@ namespace RCWS_Situation_room
         #endregion
 
         #region AZEL GUI
+
         private void pictureBox_azimuth_Paint(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
@@ -570,6 +633,8 @@ namespace RCWS_Situation_room
             int endYOptical = centerY - (int)(lineLength * Math.Cos(radianAngleOptical));
             g.DrawLine(Pens.Blue, new Point(centerX, centerY), new Point(endXOptical, endYOptical));
             /* */
+
+            drawAZEL.Draw(e.Graphics);
         }
 
         Point clickLocation;
@@ -610,6 +675,18 @@ namespace RCWS_Situation_room
 
             if (File.Exists(imagePath)) DrawImage(imagePath);
             else MessageBox.Show("Cannot draw Image: ");
+        }
+
+        private void addPinPointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            drawAZEL.AddPinPoint(lastposition);
+            pictureBox_azimuth.Invalidate();
+        }
+
+        private void deletePinPointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            drawAZEL.DeletePinPoint(lastposition);
+            pictureBox_azimuth.Invalidate();
         }
 
         void DrawImage(string path)
@@ -696,6 +773,12 @@ namespace RCWS_Situation_room
             {
                 SendUdpData(define.SERVER_IP, define.UDPPORT2, false, true);
             }
+        }
+
+        private void Setting_Click(object sender, EventArgs e)
+        {
+            Setting SettingForm = new Setting();
+            SettingForm.Show();
         }
     }
 }

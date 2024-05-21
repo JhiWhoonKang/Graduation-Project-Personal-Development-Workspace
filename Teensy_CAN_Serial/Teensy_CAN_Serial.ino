@@ -91,9 +91,6 @@ void loop()
         
         sendCANMessage(txmsg);
       }
-
-      // unsigned long delayTime = (256 - PACKET[5]) * 50 * 6 + 10;
-      // delayMicroseconds(delayTime);
     }
   }
 }
