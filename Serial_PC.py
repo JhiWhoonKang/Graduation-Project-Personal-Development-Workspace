@@ -34,7 +34,7 @@ class joy_data:
 joy = joy_data()
 
 try:
-    teensy = serial.Serial('COM14', 115200)
+    teensy = serial.Serial('COM3', 115200)
 except IOError as e:
     print(e)
     print("Teensy 어디")
