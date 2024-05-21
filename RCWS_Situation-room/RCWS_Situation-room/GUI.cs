@@ -66,9 +66,13 @@ namespace RCWS_Situation_room
         public static int reticle_offset_width = 0;
         public static int reticle_offset_height = 0;
 
-        public GUI(StreamWriter streamWriter)
+        private FormDataSetting formDataSetting;
+
+
+        public GUI(StreamWriter streamWriter, FormDataSetting formDataSetting)
         {
             InitializeComponent();
+            this.formDataSetting = formDataSetting;
 
             //mapImage = new Bitmap(@"C:\Users\kangj\Downloads\RCWS-GUI-main\RCWS-GUI-main\RCWS_Situation-room\RCWS_Situation-room\demomap.bmp"); //notebook
             mapImage = new Bitmap(@"C:\JHIWHOON_ws\2023 Hanium\_file photo\demomap.bmp"); //desktop
@@ -282,7 +286,7 @@ namespace RCWS_Situation_room
             await streamWriter.BaseStream.FlushAsync();
         }
         #endregion
-
+        
         #region TCP Connect
         private async Task TcpConnectAsync()
         {
@@ -319,6 +323,13 @@ namespace RCWS_Situation_room
                         $", BodyPan: {receivedStruct.BodyPan}, pointdistance: {receivedStruct.Permission}, Permission: {receivedStruct.Permission}" +
                         $", distance{receivedStruct.distance}, TakeAim: {receivedStruct.TakeAim}, Remaining_bullets: {receivedStruct.Remaining_bullets}" +
                         $", Magnification{receivedStruct.Magnification}, Fire: {receivedStruct.Fire}, Gun Voltage: {receivedStruct.GunVoltage}");
+
+                    string dataToShow = $"OpticalTilt: {receivedStruct.OpticalTilt}, OpticalPan: {receivedStruct.OpticalPan}, BodyTilt: {receivedStruct.BodyTilt}" +
+                $", BodyPan: {receivedStruct.BodyPan}, pointdistance: {receivedStruct.Permission}, Permission: {receivedStruct.Permission}" +
+                $", distance{receivedStruct.distance}, TakeAim: {receivedStruct.TakeAim}, Remaining_bullets: {receivedStruct.Remaining_bullets}" +
+                $", Magnification{receivedStruct.Magnification}, Fire: {receivedStruct.Fire}, Gun Voltage: {receivedStruct.GunVoltage}";
+
+                    formDataSetting.DisplayReceivedData(dataToShow);
 
                     /* picturebox display */
                     pictureBox_azimuth.Invalidate();

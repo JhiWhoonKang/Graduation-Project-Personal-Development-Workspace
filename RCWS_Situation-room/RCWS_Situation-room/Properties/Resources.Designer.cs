@@ -93,6 +93,16 @@ namespace RCWS_Situation_room.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap dot_icon {
+            get {
+                object obj = ResourceManager.GetObject("dot_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap list_icon {
             get {
                 object obj = ResourceManager.GetObject("list_icon", resourceCulture);
@@ -106,6 +116,16 @@ namespace RCWS_Situation_room.Properties {
         internal static System.Drawing.Bitmap logout_icon {
             get {
                 object obj = ResourceManager.GetObject("logout_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap motor_icon {
+            get {
+                object obj = ResourceManager.GetObject("motor_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

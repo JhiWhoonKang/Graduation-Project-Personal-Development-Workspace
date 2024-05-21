@@ -77,6 +77,54 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDataSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataSetting.Designer.cs">
+      <DependentUpon>FormDataSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMotorDataSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMotorDataSetting.Designer.cs">
+      <DependentUpon>FormMotorDataSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMotorSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMotorSetting.Designer.cs">
+      <DependentUpon>FormMotorSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOpticalDataSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOpticalDataSetting.Designer.cs">
+      <DependentUpon>FormOpticalDataSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOpticalSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOpticalSetting.Designer.cs">
+      <DependentUpon>FormOpticalSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReticleSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReticleSetting.Designer.cs">
+      <DependentUpon>FormReticleSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWeaponDataSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWeaponDataSetting.Designer.cs">
+      <DependentUpon>FormWeaponDataSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWeaponSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWeaponSetting.Designer.cs">
+      <DependentUpon>FormWeaponSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +143,30 @@
     <Compile Include="TcpReturn.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDataSetting.resx">
+      <DependentUpon>FormDataSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMotorDataSetting.resx">
+      <DependentUpon>FormMotorDataSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMotorSetting.resx">
+      <DependentUpon>FormMotorSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOpticalDataSetting.resx">
+      <DependentUpon>FormOpticalDataSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOpticalSetting.resx">
+      <DependentUpon>FormOpticalSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReticleSetting.resx">
+      <DependentUpon>FormReticleSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWeaponDataSetting.resx">
+      <DependentUpon>FormWeaponDataSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWeaponSetting.resx">
+      <DependentUpon>FormWeaponSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
@@ -161,6 +233,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\weapon_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\motor_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\dot_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
