@@ -7,8 +7,8 @@ from dataclasses import dataclass
 import struct
 
 max_length = 65000
-# host = "127.0.0.1"
-host = "172.16.2.249"
+host = "127.0.0.1"
+#host = "172.16.2.249"
 port = 9000
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
